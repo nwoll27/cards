@@ -60,13 +60,15 @@ public class Deck {
 		cards = cutDeck;		
 	}
 	
-	public void DealCards(ArrayList players, int amount){
+	public void DealCards(ArrayList<Player> players, int amount){
 		// TODO Finish code to handle dealing cards.
 		// TODO Add Player class and base methods.
 		for(int i = 0; i < amount; i++){
-			for (Object player : players){
-				//player.addToHand(cards.get(cards.size-1);
-				cards.remove(cards.size()-1);
+			for (Player player : players){
+				if(cards.size() > 0){
+					player.addCardToHand(cards.get(cards.size()-1));
+					cards.remove(cards.size()-1);
+				}
 			}
 		}
 	}
