@@ -16,7 +16,7 @@ public class Main {
 		System.out.println(playDeck);
 		
 		System.out.println("Cutting deck...");
-		playDeck.Cut();
+		playDeck.Cut(-1);
 		System.out.println(playDeck);
 		
 		System.out.println("Done!");

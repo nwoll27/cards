@@ -9,7 +9,7 @@ public class Deck {
 	private List<Card> cards = new ArrayList<Card>();
 
 	public Deck(){
-		Init();		
+		this(false);		
 	}
 	
 	public Deck(boolean Shuffled){
@@ -20,9 +20,10 @@ public class Deck {
 	}
 	
 	private void Init(){
+		cards.clear();
 		for (Suit suit : Suit.values()) {
 			for(Rank rank : Rank.values()) {
-				this.cards.add(new Card(rank, suit));
+				cards.add(new Card(rank, suit));
 			}
 		}
 	}
@@ -41,22 +42,33 @@ public class Deck {
 		cards = shuffledDeck;
 	}
 	
-	public void Cut(){
+	public void Cut(int cutIndex){
 		List<Card> cutDeck = new ArrayList<Card>();
-		int randomCard;
 		
-		randomCard = cards.size()/2;
+		if(cutIndex < 0 || cutIndex > 52) {
+			cutIndex = cards.size()/2;
+		} 		
 		
-		for(int i = randomCard; i < cards.size(); i++){
+		for(int i = cutIndex; i < cards.size(); i++){
 			cutDeck.add(cards.get(i));
 		}
 		
-		for(int i = 0; i < randomCard; i++){
+		for(int i = 0; i < cutIndex; i++){
 			cutDeck.add(cards.get(i));
+		}		
+		
+		cards = cutDeck;		
+	}
+	
+	public void DealCards(ArrayList players, int amount){
+		// TODO Finish code to handle dealing cards.
+		// TODO Add Player class and base methods.
+		for(int i = 0; i < amount; i++){
+			for (Object player : players){
+				//player.addToHand(cards.get(cards.size-1);
+				cards.remove(cards.size()-1);
+			}
 		}
-		
-		cards = cutDeck;
-		
 	}
 	
 	public String toString(){
