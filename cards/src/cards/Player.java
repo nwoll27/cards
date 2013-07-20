@@ -16,6 +16,21 @@ public class Player {
 		hand.add(aCard);
 	}
 	
+	public void drawFromDeck(Deck aDeck){
+		this.drawFromDeck(aDeck, 1);
+	}
+	
+	public void drawFromDeck(Deck aDeck, int amountToDraw){
+		for(int i=0; i < amountToDraw; i++){
+			this.addCardToHand((aDeck.drawTopCard()));
+		}		
+	}
+	
+	public void discardAllCards(Deck graveyard){
+		graveyard.addCards(hand);
+		hand.clear();
+	}
+	
 	public int getScore(){
 		return this.score;
 	}

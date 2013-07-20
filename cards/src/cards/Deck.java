@@ -61,16 +61,40 @@ public class Deck {
 	}
 	
 	public void DealCards(ArrayList<Player> players, int amount){
-		// TODO Finish code to handle dealing cards.
-		// TODO Add Player class and base methods.
 		for(int i = 0; i < amount; i++){
 			for (Player player : players){
 				if(cards.size() > 0){
-					player.addCardToHand(cards.get(cards.size()-1));
-					cards.remove(cards.size()-1);
+					player.addCardToHand(this.drawTopCard());
 				}
 			}
 		}
+	}
+	
+	public void addCards(Card aCard){
+		cards.add(aCard);
+	}
+	
+	public void addCards(List<Card> cardList){
+		for(Card aCard : cardList){
+			cards.add(aCard);
+		}		
+	}
+	
+	public Card drawTopCard(){
+		Card topCard = cards.get(cards.size()-1);
+		cards.remove(cards.size()-1);
+		return topCard;
+	}
+	
+	public Card peekTopCard(){
+		return cards.get(cards.size()-1);
+	}
+	
+	public ArrayList<Card> emptyDeck(){
+		List<Card> result = this.cards;
+		this.cards.clear();
+		return (ArrayList<Card>)result;
+		
 	}
 	
 	public String toString(){
